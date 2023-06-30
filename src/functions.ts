@@ -30,9 +30,13 @@
 // Uncomment the function below. Then underneath, or replacing, the
 // line "// Your code here", write your implementation code.
 
-// function yelling(words) {
-//   // Your code here
-// }
+function yelling(words: string[]): string[] {
+  // Replace the code below with your own code
+  const upperCase = words.map(function(word) {
+    return word.toUpperCase()
+  })
+  return upperCase
+}
 
 /**
  *
@@ -44,9 +48,13 @@
  *
  */
 
-// function doubleTrouble(numbers) {
-//   // Your code here
-// }
+function doubleTrouble(numbers: number[]): number[] {
+  const timesTwo = numbers.map(function(number) {
+    return number * 2
+  })
+
+  return timesTwo
+}
 
 /*
  * 3) Define a function named `stringyIndexes` that takes an array of
@@ -57,9 +65,13 @@
  *
  */
 
-// function stringyIndexes(strings) {
-//   // Your code here
-// }
+function stringyIndexes(strings: string[]): string[] {
+  // Replace the code below with your own code
+  // function logString(strings: string, index: number) {
+  return strings.map((string, index) => {
+    return `${string} is at index ${index}`
+  })
+}
 
 /*
  * 4) Define a function named onlyTheEvenSurvive that accepts an array of
@@ -69,9 +81,12 @@
  *
  */
 
-// function onlyTheEvenSurvive(numbers) {
-//   // Your code here
-// }
+function onlyTheEvenSurvive(numbers: number[]): number[] {
+  // Replace the code below with your own code
+
+  const even = numbers.filter(num => num % 2 === 0)
+  return even
+}
 
 /*
  * 5) Define a function onlyTheEvenIndexedSurvive that accepts an array of
@@ -81,9 +96,14 @@
  *
  */
 
-// function onlyTheEvenIndexedSurvive(numbers) {
-//   // Your code here
-// }
+function onlyTheEvenIndexedSurvive(numbers: number[]): number[] {
+  // Replace the code below with your own code
+
+  const filtered = numbers.filter(function(element, index, array) {
+    return index % 2 === 0
+  })
+  return filtered
+}
 
 /*
  * 6)  Define a function bestMoviesOfTheYear that accepts an array of
@@ -102,9 +122,19 @@
  *
  */
 
-// function bestMoviesOfTheYear(movieObjectArray, year) {
-//   // Your code here
-// }
+type Movie = {
+  name: string
+  year: number
+  score: number
+}
+function bestMoviesOfTheYear(
+  movieObjectArray: Movie[],
+  year: number
+): string[] {
+  return movieObjectArray
+    .filter(movie => movie.year === year && movie.score > 90)
+    .map(movie => movie.name)
+}
 
 /*
  * 7) Define a function everyoneIsOdd that accepts an array of
@@ -115,9 +145,9 @@
  *
  */
 
-// function everyoneIsOdd(numbers) {
-//   // Your code here
-// }
+function everyoneIsOdd(numbers: number[]): boolean {
+  return numbers.every(number => number % 2 !== 0)
+}
 
 /*
  * 8) Define a function findTheNeedle that accepts an array of
@@ -128,9 +158,9 @@
  *
  */
 
-// function findTheNeedle(strings) {
-//   // Your code here
-// }
+function findTheNeedle(strings: string[]): string {
+  return strings.find(string => string.includes('needle')) || ''
+}
 
 /*
  * 9) Define a function findTheNeedleIndex that accepts an array of
@@ -141,9 +171,9 @@
  *
  */
 
-// function findTheNeedleIndex(strings) {
-//   // Your code here
-// }
+function findTheNeedleIndex(strings: string[]): number {
+  return strings.findIndex(string => string.includes('needle'))
+}
 
 /*
  *` 10)  Define a function someoneToLove that accepts an array of
@@ -154,9 +184,9 @@
  *
  */
 
-// function someoneToLove(strings) {
-//   // Your code here
-// }
+function someoneToLove(strings: string[]): boolean {
+  return strings.some(string => string.length === 4)
+}
 
 /*
  * 11)  Define a function objectKeys that accepts an object of
@@ -312,12 +342,14 @@ const tests = [
   {
     methodName: 'doubleTrouble',
     test: () => {
+      // @ts-ignore
       return compare(doubleTrouble([2, 3, 9, 0, -5]), [4, 6, 18, 0, -10])
     }
   },
   {
     methodName: 'stringyIndexes',
     test: () => {
+      // @ts-ignore
       return compare(stringyIndexes(['how', 'now', 'brown', 'cow']), [
         'how is at index 0',
         'now is at index 1',
@@ -329,6 +361,7 @@ const tests = [
   {
     methodName: 'onlyTheEvenSurvive',
     test: () => {
+      // @ts-ignore
       return compare(onlyTheEvenSurvive([42, 50, 100, 5, -43, 17, 44]), [
         42,
         50,
@@ -341,6 +374,7 @@ const tests = [
     methodName: 'onlyTheEvenIndexedSurvive',
     test: () => {
       return compare(
+        // @ts-ignore
         onlyTheEvenIndexedSurvive([
           31,
           67,
@@ -424,14 +458,17 @@ const tests = [
         { name: 'The Big Sick', year: 2017, score: 98 }
       ]
       return (
+        // @ts-ignore
         compare(bestMoviesOfTheYear(movies, 2014), [
           'The Grand Budapest Hotel',
           'Birdman'
         ]) ||
+        // @ts-ignore
         compare(bestMoviesOfTheYear(movies, 2017), [
           'Get Out',
           'The Big Sick'
         ]) ||
+        // @ts-ignore
         compare(bestMoviesOfTheYear(movies, 2001), [])
       )
     }
@@ -440,7 +477,9 @@ const tests = [
     methodName: 'everyoneIsOdd',
     test: () => {
       return (
+        // @ts-ignore
         compare(everyoneIsOdd([9, 15, 27, 101, 33]), true) ||
+        // @ts-ignore
         compare(everyoneIsOdd([9, 23, 3, 4, 77]), false)
       )
     }
@@ -449,6 +488,7 @@ const tests = [
     methodName: 'findTheNeedle',
     test: () => {
       return compare(
+        // @ts-ignore
         findTheNeedle(['one', 'time', 'there was a needle at', 'the market']),
         'there was a needle at'
       )
@@ -458,6 +498,7 @@ const tests = [
     methodName: 'findTheNeedleIndex',
     test: () => {
       return compare(
+        // @ts-ignore
         findTheNeedleIndex([
           'one',
           'time',
@@ -472,7 +513,9 @@ const tests = [
     methodName: 'someoneToLove',
     test: () => {
       return (
+        // @ts-ignore
         compare(someoneToLove(['how', 'now', 'brown', 'cow']), false) ||
+        // @ts-ignore
         compare(someoneToLove(['how', 'now', 'blue', 'cow']), true)
       )
     }
@@ -502,6 +545,7 @@ const tests = [
       const answer = Object.keys(objectOfHobbies).map(
         key => `${key} - ${objectOfHobbies[key].title}`
       )
+      // @ts-ignore
       return compare(objectKeys(objectOfHobbies), answer)
     }
   }
